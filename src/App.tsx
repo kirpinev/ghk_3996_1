@@ -132,7 +132,7 @@ export const App = () => {
                         className={appSt.productsTitle}
                         style={{ fontSize: "30px" }}
                       >
-                        700 ₽
+                        600 ₽
                       </Typography.TitleResponsive>
                       <Gap size={24} />
                     </div>
@@ -198,7 +198,7 @@ export const App = () => {
                             view="primary-small"
                             style={{ marginBottom: 0 }}
                           >
-                            Кэшбэк за пополнение счета
+                            Кэшбэк за первое пополнение баланса
                           </Typography.Text>
                           <Typography.Text
                             tag="p"
@@ -227,7 +227,7 @@ export const App = () => {
                             view="primary-small"
                             style={{ marginBottom: 0 }}
                           >
-                            Безлимитные мессенджеры
+                            Безлимитные мессенджеры и соцсети
                           </Typography.Text>
                           <Typography.Text
                             tag="p"
@@ -412,7 +412,7 @@ export const App = () => {
                             view="primary-small"
                             style={{ marginBottom: 0 }}
                           >
-                            Безлимитные мессенджеры
+                            Безлимитные мессенджеры и соцсети
                           </Typography.Text>
                           <Typography.Text
                             tag="p"
@@ -486,7 +486,7 @@ export const App = () => {
                         </div>
                       </div>
                     </div>
-                    <Gap size={24} />
+                    <div style={{height: "44px"}}></div>
                   </div>
                 </div>
               </SwiperSlide>
@@ -547,7 +547,7 @@ export const App = () => {
                 margin: 0,
               }}
             >
-              Первый месяц подписки — 0 ₽, затем 399 ₽ в месяц
+              Первый месяц подписки — 0&nbsp;₽, затем 399&nbsp;₽ в месяц
             </Typography.Text>
           </div>
           <Gap size={16} />
