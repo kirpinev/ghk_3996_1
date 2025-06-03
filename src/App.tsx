@@ -27,7 +27,7 @@ import { LS, LSKeys } from "./ls";
 import { appSt } from "./style.css";
 import { ThxLayout } from "./thx/ThxLayout";
 import { Gap } from "@alfalab/core-components/gap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
@@ -36,21 +36,37 @@ import "swiper/css/pagination";
 
 export const App = () => {
   const [step, setStep] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [thxShow, setThx] = useState(LS.getItem(LSKeys.ShowThx, false));
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const submit = () => {
-    setLoading(true);
-    Promise.resolve().then(() => {
-      setLoading(false);
+  const handleClickStepZero = () => {
+    if (currentSlide === 0) {
+      window.gtag("event", "3996_click_like_var2");
       LS.setItem(LSKeys.ShowThx, true);
       setThx(true);
-    });
+    } else {
+      window.gtag("event", "3996_click_smart_var2");
+      setStep(1);
+    }
   };
 
+  const handleClickStepOne = () => {
+    LS.setItem(LSKeys.ShowThx, true);
+    setThx(true);
+  };
+
+  useEffect(() => {
+    if (step === 1) {
+      window.gtag("event", "3996_page_view_smart_benefit_var2");
+    }
+
+    if (step === 0) {
+      window.gtag("event", "3996_page_view_choose_sim_var2");
+    }
+  }, [step]);
+
   if (thxShow) {
-    return <ThxLayout />;
+    return <ThxLayout currentSlide={currentSlide} />;
   }
 
   return (
@@ -894,12 +910,7 @@ export const App = () => {
 
       {step === 0 && (
         <div className={appSt.bottomBtn}>
-          <ButtonMobile
-            block
-            view="primary"
-            loading={loading}
-            onClick={currentSlide === 0 ? submit : () => setStep(1)}
-          >
+          <ButtonMobile block view="primary" onClick={handleClickStepZero}>
             Выбрать
           </ButtonMobile>
         </div>
@@ -907,7 +918,7 @@ export const App = () => {
 
       {step === 1 && (
         <div className={appSt.bottomBtn}>
-          <ButtonMobile block view="primary" loading={loading} onClick={submit}>
+          <ButtonMobile block view="primary" onClick={handleClickStepOne}>
             Продолжить с подпиской
           </ButtonMobile>
         </div>

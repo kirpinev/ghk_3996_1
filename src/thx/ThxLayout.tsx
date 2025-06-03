@@ -1,8 +1,19 @@
 import { Typography } from "@alfalab/core-components/typography";
 import moai from "../assets/img.png";
 import { thxSt } from "./style.css";
+import { useEffect } from "react";
 
-export const ThxLayout = () => {
+export const ThxLayout = ({ currentSlide }: { currentSlide: number }) => {
+  useEffect(() => {
+    if (currentSlide === 0) {
+      window.gtag("event", "3996_end_page_view_like_var2");
+    }
+
+    if (currentSlide === 1) {
+      window.gtag("event", "3996_end_page_view_smart_var2");
+    }
+  }, []);
+
   return (
     <>
       <div className={thxSt.container}>
